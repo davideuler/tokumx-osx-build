@@ -25,12 +25,12 @@ cmake upgrade to 2.8.12+
     $ git clone https://github.com/Tokutek/jemalloc
     $ git clone https://github.com/Tokutek/backup-community
     
-checkout to release tag, assume it's tokumx-1.4.0
+checkout to release tag, assume it's tokumx-1.5.0
 
-    $ (cd mongo; git checkout tokumx-1.4.0)
-    $ (cd ft-index; git checkout tokumx-1.4.0)
-    $ (cd jemalloc; git checkout tokumx-1.4.0)
-    $ (cd backup-community; git checkout tokumx-1.4.0)
+    $ (cd mongo; git checkout tokumx-1.5.0)
+    $ (cd ft-index; git checkout tokumx-1.5.0)
+    $ (cd jemalloc; git checkout tokumx-1.5.0)
+    $ (cd backup-community; git checkout tokumx-1.5.0)
 
 symbol link dependency
 
@@ -50,14 +50,22 @@ manual patch or edit CMAKE_CXX_FLAGS,  add '-std=c++11 -stdlib=libc++' (not nece
     $ cd ..
     $ vim CMakeLists.txt
 
-    #change follow line, 47 line
+    #add the follow line, 47 line
     set(CMAKE_CXX_FLAGS "-std=c++11 -stdlib=libc++ -fPIC -fno-strict-aliasing -ggdb")
+
+For Mac OSX 10.9 and above (In Mac OSX 10.9, any reference to namespace tr1 is not necessary):
+remove all occurences of "tr1::" in file:
+
+    $vim mongo/src/mongo/platform/unordered_map.h
+    $vim src/mongo/platform/unordered_set.h
 
 compile and build
 
     $ cd build
     $ make -j4 package
 
+if error shows there is function not used in mongo/src/third_party/ft-index/ft/block_table.cc,  comment these functions and make again:
 
+    $ vim mongo/src/third_party/ft-index/ft/block_table.cc
 
 
