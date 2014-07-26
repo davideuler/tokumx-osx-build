@@ -45,7 +45,7 @@ generate cmake build script
     $ cd build
     $ cmake -D CMAKE_BUILD_TYPE=Release -D TOKU_DEBUG_PARANOID=OFF -D USE_VALGRIND=OFF -D USE_BDB=OFF -D BUILD_TESTING=OFF -D TOKUMX_DISTNAME=1.4.0 -D USE_CTAGS=OFF ..
 
-manual patch or edit CMAKE_CXX_FLAGS,  add '-std=c++11 -stdlib=libc++' (not necessary for 1.5.0)
+manual patch or edit CMAKE_CXX_FLAGS,  add '-std=c++11 -stdlib=libc++' 
 
     $ cd ..
     $ vim CMakeLists.txt
